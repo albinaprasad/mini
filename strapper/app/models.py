@@ -12,16 +12,16 @@ class User(models.Model):
     id=models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, blank=False, default="abc")
     password = models.CharField(max_length=100, blank=False, default="abc")
-    email = models.EmailField(default="abc@gmail.com")
+    email = models.EmailField(unique=True)
     image = models.ImageField(upload_to="user_images/")
     description = models.TextField()
-    hash = models.CharField(max_length=256)
+    hash = models.CharField(max_length=256,unique=True)
     location = models.CharField(max_length=100)
     qualification = models.CharField(max_length=100)
     
     def save(self,*args, **kwargs):
         self.password=get_hash(self.password)
-        self.hash = get_hash(self.name+self.password)
+        self.hash = get_hash(self.name+self.password+self.email)
         super().save(*args, **kwargs)
         pass
     
