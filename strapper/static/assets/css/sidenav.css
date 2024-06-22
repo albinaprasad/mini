@@ -1,0 +1,15 @@
+html,body{
+    padding: 0;
+    margin: 0;
+}
+.main{
+    position: relative;
+    width: 20%;
+    color: white;
+    background-color: hsl(120, 6%, 16%);
+    height: 100%;
+}
+.main ul{
+    font-size: large;
+    margin-top: 100px;
+}
