@@ -30,8 +30,15 @@ class JobOpted(models.Model):
     user_id = models.ForeignKey(User,on_delete=models.CASCADE)
     jobid = models.ForeignKey(JobPreference,on_delete=models.CASCADE)
     
+class Jobs(models.Model):
+    title=models.CharField(max_length=256)
+    description = models.TextField()
+    location = models.CharField(max_length=100)
+    link = models.TextField()
+    company = models.CharField(max_length=200)
+    job_type = models.ForeignKey(JobPreference,on_delete=models.CASCADE)
+    
 def get_hash(hash_string):
     return hashlib.sha256(hash_string.encode('utf-8')).hexdigest()
-    
     
     
