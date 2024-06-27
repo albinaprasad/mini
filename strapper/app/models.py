@@ -30,6 +30,9 @@ class JobOpted(models.Model):
     user_id = models.ForeignKey(User,on_delete=models.CASCADE)
     jobid = models.ForeignKey(JobPreference,on_delete=models.CASCADE)
     
+    class Meta:
+        unique_together=('user_id','jobid')
+    
 class Jobs(models.Model):
     title=models.CharField(max_length=256)
     description = models.TextField()

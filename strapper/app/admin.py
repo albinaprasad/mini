@@ -7,12 +7,10 @@ from django.utils.translation import gettext_lazy as _
 from unfold.views import UnfoldModelAdminViewMixin
 from django.views.generic import TemplateView
 
-
-
 # Register your models here.
 admin.site.site_header = "Admin Panel"
 
-from app.models import User, JobPreference,JobOpted
+from app.models import User, JobPreference,JobOpted,Review,Jobs
 
 class UserStatus(TextChoices):
     ACTIVE = "ACTIVE", _("Active")
@@ -24,6 +22,15 @@ class MyClassBasedView(UnfoldModelAdminViewMixin, TemplateView):
     title = "Custom Title"  # required: custom page header title
     permissions_required = () # required: tuple of permissions
     template_name = "some/template/path.html"
+    
+@admin.register(Review)
+class ReviewAdmin(ModelAdmin):
+    list_display=("user_id","message","rating")
+    
+@admin.register(Jobs)
+class JobAdmin(ModelAdmin):
+    list_display=('title','description','location','link','company','job_type') 
+    search_fields=('title','location','company')
     
 @admin.register(JobPreference)
 class JobPreferenceAdmin(ModelAdmin):
@@ -46,6 +53,6 @@ class JobOptedAdmin(ModelAdmin):
         return result.name
     
     def job(self,obj):
-        result = JobPreference.objects.filter(id=obj.id).first()
-        return result.title
+        result = obj.jobid.title
+        return result
     

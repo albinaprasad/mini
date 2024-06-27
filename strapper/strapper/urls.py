@@ -16,12 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app.views import launch, selectjob
+from app.views import launch, select_job, login, signup, dynamic, change
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',launch),
-    path('selectjob/',selectjob),
+    path('select_job/',select_job),
+    path('login/',login),
+    path('signup/',signup),
+    path('<str:slug>',dynamic),
+    path('redirect/',change)
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

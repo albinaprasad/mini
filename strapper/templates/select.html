@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+<head>
+    {% block link %}
+        <link rel="stylesheet" href="{% static "assets/css/select.css" %}">
+    {% endblock link %}
+    
+</head>
+{% block title %}
+    <h1 class="h">Select your Jobs</h1>
+{% endblock title %}
+
+{% block content %}
+
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <script src="{% static "assets/js/select.js" %}"></script>
+    </head>
+    <div class="contain">
+        <div class="custom-select open">
+            <div class="select-box">
+                <input type="text" class="tag_input" name="tags" hidden>
+                <div class="selected-options">
+                </div>
+                
+                <button class="button" id="button">submit</button>
+            </div>
+            <div class="options">
+                <div class="option-search-tags">
+                    <input type="text" class="search-tags" name="" id="" placeholder="Search jobs...">
+                    <button class="clear"><i class="fa fa-close"></i></button>
+                </div>
+                <div class="option all-tags" data-value="All">Select All</div>
+                {% for job in jobs %}
+                    <script>console.log( "{{ job.title }}" )</script>
+                    <div class="option all-tags" data-value="{{ job.id }}">{{ job.title }}</div>
+                {% endfor %}
+                
+            </div>
+            
+        </div>
+
+    </div>
+
+{% endblock content %}

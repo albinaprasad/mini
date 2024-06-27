@@ -1,0 +1,66 @@
+html,body{
+    padding: 0;
+    margin: 0;
+}
+
+ul{
+    color: #f0f0f0;
+    z-index: 100;
+    width: 100%;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    word-wrap: break-word;
+    text-decoration: none;
+    font-size: larger;
+}
+ul li{
+    color: #fff;
+    width: 100%;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 10px;
+}
+ul li:hover{
+    background-color: #909090;
+    color: #111;
+}
+ul li a{
+    color: #fff;
+    padding-left: 20;
+    text-decoration: none;
+}
+/* Hide the drawer initially */
+.nav-drawer {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    padding: 10px;
+    left: 0%;
+    width: 300px; /* Adjust width as needed */
+    background-color: #111;
+    height: 100vh;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Style the toggle button */
+  .nav-drawer-toggle {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+  }
+  
+  /* Show the drawer when the toggle button is clicked */
+  .nav-drawer.active {
+    transform: translateX(-100%);
+  }
+  h1{
+    color: #fff;
+    padding-top: 30px;
+    padding-left: 10px;
+  }

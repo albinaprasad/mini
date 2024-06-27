@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jobs</title>
+</head>
+<body>
+    <style>
+        
+      </style>
+    </head>
+    <body>
+      {% block search %}
+      <form action="" method="get">
+        <input type="text" name="search" id="search" placeholder="search job here...">
+        <input type="submit" value="search">
+      </form>
+      {% endblock search %}
+    
+        {% block content %}
+        <div class="container text-center">
+            <div class="container text-center">
+                <div class="row align-items-start">
+                  <div class="col-4">
+                    <div class="list-group custom-list-group">
+                        <li href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                          Jobs
+                        </li>
+                        {% for element in jobs %}
+                        <div class="card">
+                            <div class="card-body" id="{{ element.id }}" data-value="{{ element.id }}" onclick="jobSelect(this)">
+                              {{ element.title }}
+                            </div>
+                          </div>
+                        {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-8">
+                    <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Details</h5>
+                          <h6 class="card-subtitle mb-2 text-body-secondary" id="subtitle"></h6>
+                          <p class="card-text" id="description">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <p class="card-text" id="loc">location</p>
+                          <a href="#" class="card-text" id="li">link</a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <script>
+                var queryset = JSON.parse('{{ job_json|escapejs }}');
+                var subtitle = document.getElementById("subtitle");
+                var description = document.getElementById('description');
+                var loc = document.getElementById('loc');
+                var li = document.getElementById('li');
+                console.log(queryset[0])
+                subtitle.innerText = queryset[0].fields.title
+                description.innerText = queryset[0].fields.description
+                loc.innerText = queryset[0].fields.location
+                li.innerText = queryset[0].fields.link
+                var prev=null
+                const jobSelect=(eve)=>{
+                  const elem = queryset.filter((element)=>element.pk==eve.dataset.value)
+                  console.log(elem[0].fields.title)
+                  subtitle.innerText = elem[0].fields.title;
+                  description.innerText = "description  :"+elem[0].fields.description; 
+                  loc.innerText = "location  :"+elem[0].fields.location
+                  li.innerText = "link :"+elem[0].fields.link
+                }
+            </script>
+        {% endblock content %}
+</body>
+</html>

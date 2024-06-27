@@ -1,6 +1,7 @@
 # web scraping
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service as ChromeService
 
 # html parsing
 from bs4 import BeautifulSoup
@@ -42,13 +43,13 @@ async def scrapeJobDescription(url):
 import traceback
 
 def DriverOptions():
-    chrome_driver_path = '/usr/bin/google-chrome'
-    options = webdriver.ChromeOptions()
+    chrome_driver_path = '/usr/bin/chromedriver'
+    service = ChromeService(executable_path=chrome_driver_path)
+    options = Options()
     options.add_argument("--window-size=1920,1080")
-    options.add_argument("--headless")
+    options.add_argument("--headless")  # Run headless browser
 
-    driver = webdriver.Chrome(options)
-
+    driver = webdriver.Chrome(service=service, options=options)
     return driver
 
 from itertools import islice
