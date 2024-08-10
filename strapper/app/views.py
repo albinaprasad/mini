@@ -71,7 +71,7 @@ def login(req):
         if user is None:
             return render(req,'elixir/assets/login/signup.html',{ 'error':'No user found','success': None})
         else:
-            res = redirect("/"+user.hash)
+            res = redirect("/"+user.hash) 
             set_cookie(res,req.POST)
             return res
     else:
@@ -103,8 +103,8 @@ def dynamic(req,slug):
     })
 
 def account(req):
-    return render(req,'account.html')
+    print("callled account")
+    return render(req,'usersetting.html')
 
 def change(req):
-    
     return render(req,'account.html')
